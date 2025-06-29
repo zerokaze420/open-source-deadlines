@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { DeadlineItem } from '@/lib/data'
 
-export function loadData(): DeadlineItem[] {
+function loadData(): DeadlineItem[] {
   const conferencesPath = path.join(process.cwd(), 'data', 'conferences.yml')
   const competitionsPath = path.join(process.cwd(), 'data', 'competitions.yml')
   
