@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Open Source Deadlines
 
-## Getting Started
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme&repository-url=https%3A%2F%2Fgithub.com%2Fhust-open-atom-club%2Fopen-source-deadlines)
 
-First, run the development server:
+一个追踪开源会议和竞赛截止日期的网站，帮助开发者们及时了解最新的开源活动动态，不再错过为社区贡献、学习和交流的机会。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 如何添加活动
+
+我们非常欢迎社区贡献！如果您发现有未收录的开源会议或竞赛，或者信息有误，请通过提交 Pull Request 的方式来帮助我们更新。
+
+所有活动数据都存储在 `/data` 目录下的 YAML 文件中。
+
+*   **会议**: 请添加到 `data/conferences.yml`
+*   **竞赛**: 请添加到 `data/competitions.yml`
+
+### 数据结构
+
+请在对应的 YAML 文件中，仿照以下格式添加新条目：
+
+```yaml
+- title: 活动名称 (例如：开源之夏)
+  description: 对活动的一句话描述
+  category: competition # 会议请使用 "conference"
+  tags:
+    - 标签1
+    - 标签2
+  events:
+    - year: 2024 # 活动年份
+      id: ospp2024 # 全局唯一的ID
+      link: https://summer-ospp.ac.cn # 活动链接
+      timeline:
+        - deadline: '2024-06-04T18:00:00Z' # 关键日期 (ISO 8601 格式)
+          comment: '项目申请书提交' # 日期说明
+        - deadline: '2024-09-30T24:00:00'
+          comment: '结项提交'
+      timezone: Asia/Shanghai # 活动所在时区
+      date: 2024年4月30日-9月30日 # 人类可读的日期范围
+      place: 线上 # 活动地点
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**注意事项:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `category`: 必须是 `conference` 或 `competition`。
+- `timeline.deadline`: 请使用 `YYYY-MM-DDTHH:mm:ss` 格式。
+- `timezone`: 请使用标准的 IANA 时区名称（例如 `Asia/Shanghai`），否则会影响时区转换。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 开发指南
 
-## Learn More
+### 环境准备
 
-To learn more about Next.js, take a look at the following resources:
+**Bun**: 本项目使用 [Bun](https://bun.sh/) 作为包管理器和运行时。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 本地启动
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **克隆项目**
+    ```bash
+    git clone https://github.com/hust-open-atom-club/open-source-deadlines.git
+    cd open-source-deadlines
+    ```
 
-## Deploy on Vercel
+2.  **安装依赖**
+    ```bash
+    bun install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **启动开发服务器**
+    ```bash
+    bun run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+现在，在浏览器中打开 [http://localhost:3000](http://localhost:3000) 即可看到项目页面。
+
+### 技术栈
+
+- **框架**: [Next.js](https://nextjs.org/)
+- **UI**: [Tailwind CSS](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **状态管理**: [Zustand](https://github.com/pmndrs/zustand)
+- **搜索**: [Fuse.js](https://github.com/krisk/fuse)

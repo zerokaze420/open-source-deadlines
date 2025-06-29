@@ -1,0 +1,109 @@
+- title: 开源之夏
+  description: 开源软件供应链点亮计划
+  category: competition
+  tags:
+    - RISC-V
+    - openEuler
+    - Apache
+  events:
+    - year: 2025
+      id: ospp2025
+      link: https://summer-ospp.ac.cn
+      timeline:
+        - deadline: '2025-06-04T18:00:00'
+          comment: '项目申请书提交'
+        - deadline: '2025-09-30T24:00:00'
+          comment: '结项提交'
+      timezone: Asia/Shanghai
+      date: 2025年4月30日-9月30日
+      place: 线上
+    - year: 2024
+      id: ospp2024
+      link: https://summer-ospp.ac.cn/2024/
+      timeline:
+        - deadline: '2024-06-04T18:00:00'
+          comment: '项目申请书提交'
+        - deadline: '2024-09-30T24:00:00'
+          comment: '结项提交'
+      timezone: Asia/Shanghai
+      date: 2024年4月30日-9月30日
+      place: 线上
+
+- title: 谷歌编程之夏
+  description: 一项旨在吸引更多开发者参与开源软件开发的全球性项目
+  category: competition
+  tags:
+    - Programming
+    - Mentorship
+    - Open Source
+  events:
+    - year: 2025
+      id: gsoc2025
+      link: https://summerofcode.withgoogle.com/
+      timeline:
+        - deadline: '2025-01-22T18:00:00'
+          comment: '组织申请开始'
+        - deadline: '2025-02-05T18:00:00'
+          comment: '组织申请截止'
+        - deadline: '2025-03-18T18:00:00'
+          comment: '学生申请开始'
+        - deadline: '2025-04-01T18:00:00'
+          comment: '学生申请截止'
+        - deadline: '2025-05-01T18:00:00'
+          comment: '编码开始'
+      timezone: Asia/Shanghai
+      date: 2025年5月1日 - 8月26日
+      place: 线上
+    - year: 2024
+      id: gsoc2024
+      link: https://summerofcode.withgoogle.com/archive/2024/
+      timeline:
+        - deadline: '2024-01-22T18:00:00'
+          comment: '组织申请开始'
+        - deadline: '2024-02-05T18:00:00'
+          comment: '组织申请截止'
+        - deadline: '2024-03-18T18:00:00'
+          comment: '学生申请开始'
+        - deadline: '2024-04-01T18:00:00'
+          comment: '学生申请截止'
+        - deadline: '2024-05-01T18:00:00'
+          comment: '编码开始'
+      timezone: Asia/Shanghai
+      date: 2024年5月1日 - 8月26日
+      place: 线上
+
+- title: Hacktoberfest
+  description: 为期一个月的开源软件庆典
+  category: competition
+  tags:
+    - Git
+    - GitHub
+    - Open Source
+    - Contributions
+  events:
+    - year: 2025
+      id: hacktoberfest2025
+      link: https://hacktoberfest.com/
+      timeline:
+        - deadline: '2025-09-26T00:00:00'
+          comment: '注册开始'
+        - deadline: '2025-10-01T00:00:00'
+          comment: '贡献期开始'
+        - deadline: '2025-10-31T23:59:00'
+          comment: '贡献期结束'
+      timezone: America/Vancouver
+      date: 2025年10月1-31日
+      place: 线上
+    - year: 2024
+      id: hacktoberfest2024
+      link: https://hacktoberfest.com/2024/
+      timeline:
+        - deadline: '2024-09-26T00:00:00'
+          comment: '注册开始'
+        - deadline: '2024-10-01T00:00:00'
+          comment: '贡献期开始'
+        - deadline: '2024-10-31T23:59:00'
+          comment: '贡献期结束'
+      timezone: America/Vancouver
+      date: 2024年10月1-31日
+      place: 线上

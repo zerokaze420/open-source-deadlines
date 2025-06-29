@@ -1,103 +1,166 @@
-import Image from "next/image";
+'use client'
+
+import { useEffect, useMemo } from 'react'
+import Fuse from 'fuse.js'
+import { EventCard } from '@/components/EventCard'
+import { FilterBar } from '@/components/FilterBar'
+import { Calendar, Github } from 'lucide-react'
+import { useEventStore } from '@/lib/store'
+import { DeadlineItem, EventData } from '@/lib/data'
+import Link from 'next/link'
+import { TZDate } from '@date-fns/tz'
+
+interface FlatEvent {
+  item: DeadlineItem
+  event: EventData
+  nextDeadline: Date
+  timeRemaining: number
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { 
+    items, 
+    loading, 
+    fetchItems, 
+    selectedCategory, 
+    selectedTags, 
+    selectedLocations, 
+    searchQuery,
+    favorites,
+    showOnlyFavorites,
+  } = useEventStore()
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    fetchItems()
+  }, [fetchItems])
+
+  const flatEvents: FlatEvent[] = useMemo(() => items.flatMap(item =>
+    item.events.map(event => {
+      const now = new TZDate(new Date(), "Asia/Shanghai")
+      const upcomingDeadlines = event.timeline
+        .map(t => new TZDate(t.deadline, event.timezone))
+        .filter(d => d > now)
+        .sort((a, b) => a.getTime() - b.getTime())
+      
+      const nextDeadline = upcomingDeadlines[0] || new TZDate(event.timeline[event.timeline.length - 1].deadline, event.timezone)
+      const timeRemaining = nextDeadline.getTime() - now.getTime()
+      
+      return { item, event, nextDeadline, timeRemaining }
+    })
+  ), [items])
+
+  const fuse = useMemo(() => {
+    return new Fuse(flatEvents, {
+      keys: ['item.title', 'item.description', 'item.tags', 'event.place'],
+      threshold: 0.3,
+    })
+  }, [flatEvents])
+
+  const filteredEvents = useMemo(() => {
+    let results: FlatEvent[]
+    
+    if (searchQuery.trim() && fuse) {
+      results = fuse.search(searchQuery.trim()).map(result => result.item)
+    } else {
+      results = flatEvents
+    }
+
+    return results
+      .filter(({ item, event }) => {
+        if (showOnlyFavorites && !favorites.includes(`${event.id}`)) return false
+        if (selectedCategory && item.category !== selectedCategory) return false
+        if (selectedTags.length > 0 && !selectedTags.some(tag => item.tags.includes(tag))) return false
+        if (selectedLocations.length > 0 && !selectedLocations.includes(event.place)) return false
+        return true
+      })
+      .sort((a, b) => {
+        const aEnded = a.timeRemaining < 0
+        const bEnded = b.timeRemaining < 0
+        
+        if (aEnded && !bEnded) return 1
+        if (!aEnded && bEnded) return -1
+        if (aEnded && bEnded) return b.timeRemaining - a.timeRemaining
+        
+        return a.timeRemaining - b.timeRemaining
+      })
+  }, [flatEvents, searchQuery, fuse, selectedCategory, selectedTags, selectedLocations, favorites, showOnlyFavorites]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-slate-600">正在加载活动...</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <header className="text-left mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-start gap-3">
+              <div className="p-3 bg-primary rounded-full">
+                <Calendar className="w-8 h-8 text-white" />
+              </div>
+              <h1 className="text-4xl font-bold text-slate-900">
+                开源项目截止日期
+              </h1>
+            </div>
+            <Link
+              href="https://github.com/hust-open-atom-club/open-source-deadlines"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-slate-700 transition-colors"
+              aria-label="GitHub Repository"
+            >
+              <Github className="w-7 h-7" />
+            </Link>
+          </div>
+          <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
+            开源会议和竞赛重要截止日期概览，不再错过为社区贡献、学习和交流的机会。
+          </p>
+          <p className="text-sm text-slate-600 mt-5">
+            所有截止日期均已转换为北京时间。
+          </p>
+        </header>
+
+        {/* Filters */}
+        <div className="bg-white rounded-xl p-6 shadow-sm border mb-8">
+          <FilterBar />
+        </div>
+
+        {/* Events List */}
+        <div className="space-y-4">
+          {filteredEvents.map(({ item, event }) => (
+            <EventCard 
+              key={`${event.id}`} 
+              item={item} 
+              event={event} 
+            />
+          ))}
+        </div>
+
+        {filteredEvents.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">未找到任何活动</h3>
+            <p className="text-slate-600">
+              请尝试调整筛选器或搜索词以查看更多活动。
+            </p>
+          </div>
+        )}
+
+        {/* Footer */}
+        <footer className="mt-16 text-center text-slate-600">
+          <p className="text-sm">
+            使用 Next.js 与 shadcn/ui 构建 • 数据由人工维护
+          </p>
+        </footer>
+      </div>
     </div>
-  );
+  )
 }
