@@ -29,7 +29,7 @@
       id: ospp2024 # 全局唯一的ID
       link: https://summer-ospp.ac.cn # 活动链接
       timeline:
-        - deadline: '2024-06-04T18:00:00Z' # 关键日期 (ISO 8601 格式)
+        - deadline: '2024-06-04T18:00:00' # 关键日期 (ISO 8601 格式)
           comment: '项目申请书提交' # 日期说明
         - deadline: '2024-09-30T24:00:00'
           comment: '结项提交'
@@ -66,6 +66,11 @@
 3.  **启动开发服务器**
     ```bash
     bun run dev
+    ```
+
+4. **（可选）剪枝**
+    ```bash
+    bun run knip
     ```
 
 现在，在浏览器中打开 [http://localhost:3000](http://localhost:3000) 即可看到项目页面。

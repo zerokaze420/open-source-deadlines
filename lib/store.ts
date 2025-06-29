@@ -1,14 +1,6 @@
 import { create } from 'zustand'
-import Fuse from 'fuse.js'
-import { DeadlineItem, EventData } from '@/lib/data'
+import { DeadlineItem } from '@/lib/data'
 import { persist, createJSONStorage } from 'zustand/middleware'
-
-interface FlatEvent {
-  item: DeadlineItem
-  event: EventData
-  nextDeadline: Date
-  timeRemaining: number
-}
 
 interface AppState {
   items: DeadlineItem[]
@@ -32,7 +24,7 @@ interface AppState {
 
 export const useEventStore = create<AppState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       // State
       items: [],
       loading: true,
