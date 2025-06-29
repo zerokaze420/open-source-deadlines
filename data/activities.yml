@@ -1,0 +1,30 @@
+- title: 开源之夏
+  description: 开源软件供应链点亮计划
+  category: activity
+  tags:
+    - RISC-V
+    - openEuler
+    - Apache
+  events:
+    - year: 2025
+      id: ospp2026
+      link: https://summer-ospp.ac.cn
+      timeline:
+        - deadline: '2025-06-04T18:00:00'
+          comment: '项目申请书提交'
+        - deadline: '2025-09-30T24:00:00'
+          comment: '结项提交'
+      timezone: Asia/Shanghai
+      date: 2025年4月30日-9月30日
+      place: 线上
+    - year: 2024
+      id: ospp2028
+      link: https://summer-ospp.ac.cn/2024/
+      timeline:
+        - deadline: '2024-06-04T18:00:00'
+          comment: '项目申请书提交'
+        - deadline: '2024-09-30T24:00:00'
+          comment: '结项提交'
+      timezone: Asia/Shanghai
+      date: 2024年4月30日-9月30日
+      place: 线上

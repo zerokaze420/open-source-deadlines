@@ -18,7 +18,7 @@ export interface EventData {
 export interface DeadlineItem {
   title: string
   description: string
-  category: 'conference' | 'competition'
+  category: 'conference' | 'competition' | 'activity'
   tags: string[]
   events: EventData[]
 }

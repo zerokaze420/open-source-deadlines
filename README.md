@@ -6,12 +6,14 @@
 
 ## 如何添加活动
 
-我们非常欢迎社区贡献！如果您发现有未收录的开源会议或竞赛，或者信息有误，请通过提交 Pull Request 的方式来帮助我们更新。
+我们非常欢迎社区贡献！如果您发现有未收录的开源会议、竞赛及活动，或者信息有误，请通过提交 Pull Request 的方式来帮助我们更新。
 
 所有活动数据都存储在 `/data` 目录下的 YAML 文件中。
 
-*   **会议**: 请添加到 `data/conferences.yml`
-*   **竞赛**: 请添加到 `data/competitions.yml`
+- **会议**: 请添加到 `data/conferences.yml`
+- **竞赛**: 请添加到 `data/competitions.yml`
+- **活动**: 请添加到 `data/activities.yml`
+
 
 ### 数据结构
 
@@ -20,22 +22,22 @@
 ```yaml
 - title: 活动名称 (例如：开源之夏)
   description: 对活动的一句话描述
-  category: competition # 会议请使用 "conference"
+  category: competition # 会议请使用 "conference"，活动请使用 "activity"
   tags:
     - 标签1
     - 标签2
   events:
-    - year: 2024 # 活动年份
+    - year: 2025 # 年份
       id: ospp2024 # 全局唯一的ID
-      link: https://summer-ospp.ac.cn # 活动链接
+      link: https://summer-ospp.ac.cn # 链接
       timeline:
         - deadline: '2024-06-04T18:00:00' # 关键日期 (ISO 8601 格式)
           comment: '项目申请书提交' # 日期说明
         - deadline: '2024-09-30T24:00:00'
           comment: '结项提交'
-      timezone: Asia/Shanghai # 活动所在时区
-      date: 2024年4月30日-9月30日 # 人类可读的日期范围
-      place: 线上 # 活动地点
+      timezone: Asia/Shanghai # 所在时区
+      date: 2025年4月30日-9月30日 # 人类可读的日期范围
+      place: 线上 # 地点
 ```
 
 **注意事项:**

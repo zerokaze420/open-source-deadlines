@@ -11,6 +11,7 @@ import { ReactNode } from 'react'
 const categoryTranslations: { [key: string]: string } = {
   conference: '会议',
   competition: '竞赛',
+  activity: '活动',
 };
 
 // 可复用的过滤按钮组件
@@ -54,7 +55,7 @@ export function FilterBar() {
     mounted,
   } = useEventStore()
 
-  const categories = ['conference', 'competition']
+  const categories = ['conference', 'competition', 'activity']
   const allTags = Array.from(new Set(items.flatMap(item => item.tags)))
   const allLocations = Array.from(new Set(
     items.flatMap(item => item.events.map(event => event.place))

@@ -18,6 +18,7 @@ interface EventCardProps {
 const categoryTranslations: { [key: string]: string } = {
   conference: '会议',
   competition: '竞赛',
+  activity: '活动',
 };
 
 export function EventCard({ item, event }: EventCardProps) {
@@ -85,9 +86,11 @@ export function EventCard({ item, event }: EventCardProps) {
               {/* 类别标签 */}
               <div className="flex justify-between items-center">
                 <div className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${
-                  item.category === 'conference' 
-                    ? 'bg-green-600 text-white' 
-                    : 'bg-red-600 text-white'
+                  {
+                    'conference': 'bg-green-600 text-white',
+                    'competition': 'bg-red-600 text-white',
+                    'activity': 'bg-orange-600 text-white'
+                  }[item.category] || 'bg-primary text-white'
                 }`}>
                   {categoryTranslations[item.category] || item.category}
                 </div>
