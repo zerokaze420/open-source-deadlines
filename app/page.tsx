@@ -106,8 +106,8 @@ export default function Home() {
               <div className="p-3 bg-primary rounded-full">
                 <Calendar className="w-8 h-8 text-white" />
               </div>
-              <h1 className="text-4xl font-bold text-slate-900">
-                开源项目截止日期
+              <h1 className="text-3xl font-bold text-slate-900">
+                开源活动截止日期
               </h1>
             </div>
             <Link
@@ -120,9 +120,8 @@ export default function Home() {
               <Github className="w-7 h-7" />
             </Link>
           </div>
-          <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
-            开源会议和竞赛重要截止日期概览<br/>
-            不再错过为社区贡献、学习和交流的机会
+          <p className="text-lg text-slate-600 max-w-2xl leading-relaxed">
+            开源会议、竞赛和活动重要截止日期概览，不再错过为社区贡献、学习和交流的机会
           </p>
           <p className="text-sm text-slate-600 mt-5">
             所有截止日期均已转换为北京时间<br/>
