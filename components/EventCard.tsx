@@ -6,9 +6,10 @@ import { Badge } from '@/components/ui/badge'
 import { TimelineItem } from '@/components/TimelineItem'
 import { CountdownTimer } from '@/components/CountdownTimer'
 import { DeadlineItem, EventData, isEventEnded } from '@/lib/data'
-import { Calendar, MapPin, Clock, Star } from 'lucide-react'
+import { Calendar, MapPin, Clock, Star, ExternalLink } from 'lucide-react'
 import { useEventStore } from '@/lib/store'
 import { TZDate } from '@date-fns/tz'
+import Link from 'next/link'
 
 interface EventCardProps {
   item: DeadlineItem
@@ -53,9 +54,12 @@ export function EventCard({ item, event }: EventCardProps) {
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start gap-2 flex-wrap">
-                    <h2 className="text-xl font-semibold leading-tight break-words">
-                      {item.title}
-                    </h2>
+                    <Link href={event.link} target="_blank" className="hover:underline flex items-center gap-1">
+                      <h2 className="text-xl font-semibold leading-tight break-words">
+                        {item.title}
+                      </h2>
+                      <ExternalLink className="w-4 h-4" />
+                    </Link>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       <Badge variant="outline" className="text-xs">
                         {event.year}
