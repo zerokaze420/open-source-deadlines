@@ -66,3 +66,25 @@
       timezone: America/Vancouver
       date: 2024年6月18-20日
       place: 加拿大, 温哥华
+
+- title: 中国 Linux 内核开发者大会
+  description: 由清华大学、Intel 等多家企业和机构发起，是中国 Linux 内核领域有影响力的峰会。
+  category: conference
+  tags:
+    - Linux 内核
+    - 开源技术
+    - 开发者峰会
+  events:
+    - year: 2024
+      id: clk2024
+      link: http://ckernel.org/
+      timeline:
+        - deadline: '2024-09-10T00:00:00'
+          comment: '征稿开放'
+        - deadline: '2024-09-25T24:00:00'
+          comment: '征稿截止'
+        - deadline: '2024-10-20T24:00:00'
+          comment: '演讲PPT截止提交'
+      timezone: Asia/Shanghai
+      date: 2024年10月26日
+      place: 湖北武汉
