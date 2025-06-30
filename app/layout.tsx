@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Open Source Event Deadlines",
-  description: "Open Source Event Deadlines",
+  description: "A website that tracks deadlines for open source conferences, competitions, and activities, helping developers stay informed about the latest open source event and never miss opportunities to contribute, learn, and network with the community.",
 };
 
 export default function RootLayout({

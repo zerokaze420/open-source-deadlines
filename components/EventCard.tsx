@@ -54,7 +54,7 @@ export function EventCard({ item, event }: EventCardProps) {
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start gap-2 flex-wrap">
-                    <Link href={event.link} target="_blank" className="hover:underline flex items-center gap-1">
+                    <Link href={event.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
                       <h2 className="text-xl font-semibold leading-tight break-words">
                         {item.title}
                       </h2>
