@@ -42,46 +42,29 @@
       link: https://summerofcode.withgoogle.com/
       timeline:
         - deadline: '2025-01-27T18:00:00Z'
-          comment: '导师组织申请开始日期'
+          comment: '导师组织申请开始'
         - deadline: '2025-02-11T18:00:00Z'
-          comment: '导师组织申请截止日期'
+          comment: '导师组织申请截止'
         - deadline: '2025-03-24T18:00:00Z'
-          comment: 'GSoC贡献者申请开始日期'
+          comment: '贡献者申请开始'
         - deadline: '2025-04-08T18:00:00Z'
-          comment: 'GSoC贡献者申请截止日期'
+          comment: '贡献者申请截止'
         - deadline: '2025-05-08T18:00:00Z'
-          comment: '公布GSoC贡献者项目'
+          comment: '公布贡献者项目'
         - deadline: '2025-06-02T00:00:00Z'
           comment: '正式开始编码'
         - deadline: '2025-07-14T18:00:00Z'
-          comment: '中期评估开始日期'
+          comment: '中期评估开始'
         - deadline: '2025-07-18T18:00:00Z'
-          comment: '中期评估截止日期'
+          comment: '中期评估截止'
         - deadline: '2025-09-01T18:00:00Z'
-          comment: 'GSoC 贡献者提交最终成果和最终导师评估截止日期'
+          comment: '贡献者提交最终成果和最终导师评估截止'
         - deadline: '2025-11-10T18:00:00Z'
-          comment: '延长截止日期的GSoC贡献者提交最终成果和最终评估的截止日期'
+          comment: '延长截止日期的贡献者提交最终成果和最终评估截止'
         - deadline: '2025-11-17T18:00:00Z'
-          comment: '导师针对延长截止日期的GSoC贡献者项目提交评估的截止日期'
+          comment: '导师针对延长截止日期的贡献者项目提交评估截止'
       timezone: UTC
       date: 2025年1月27日-11月17日
-      place: 线上
-    - year: 2024
-      id: gsoc2024
-      link: https://summerofcode.withgoogle.com/
-      timeline:
-        - deadline: '2024-01-22T18:00:00'
-          comment: '组织申请开始'
-        - deadline: '2024-02-05T18:00:00'
-          comment: '组织申请截止'
-        - deadline: '2024-03-18T18:00:00'
-          comment: '学生申请开始'
-        - deadline: '2024-04-01T18:00:00'
-          comment: '学生申请截止'
-        - deadline: '2024-05-01T18:00:00'
-          comment: '编码开始'
-      timezone: Asia/Shanghai
-      date: 2024年5月1日 - 8月26日
       place: 线上
 
 - title: Hacktoberfest

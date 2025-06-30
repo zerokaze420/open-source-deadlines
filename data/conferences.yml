@@ -67,11 +67,11 @@
       date: 2024年6月18-20日
       place: 加拿大, 温哥华
 
-- title: 2024 CLK
-  description: 中国Linux内核开发者大会由清华大学、Intel等多家企业和机构发起，是中国Linux内核领域有影响力的峰会。
+- title: 中国 Linux 内核开发者大会
+  description: 由清华大学、Intel 等多家企业和机构发起，是中国 Linux 内核领域有影响力的峰会。
   category: conference
   tags:
-    - Linux内核
+    - Linux 内核
     - 开源技术
     - 开发者峰会
   events:
