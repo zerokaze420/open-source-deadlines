@@ -66,39 +66,3 @@
       timezone: UTC
       date: 2025年1月27日-11月17日
       place: 线上
-
-- title: Hacktoberfest
-  description: 为期一个月的开源软件庆典
-  category: competition
-  tags:
-    - Git
-    - GitHub
-    - Open Source
-    - Contributions
-  events:
-    - year: 2025
-      id: hacktoberfest2025
-      link: https://hacktoberfest.com/
-      timeline:
-        - deadline: '2025-09-26T00:00:00'
-          comment: '注册开始'
-        - deadline: '2025-10-01T00:00:00'
-          comment: '贡献期开始'
-        - deadline: '2025-10-31T23:59:00'
-          comment: '贡献期结束'
-      timezone: America/Vancouver
-      date: 2025年10月1-31日
-      place: 线上
-    - year: 2024
-      id: hacktoberfest2024
-      link: https://hacktoberfest.com/2024/
-      timeline:
-        - deadline: '2024-09-26T00:00:00'
-          comment: '注册开始'
-        - deadline: '2024-10-01T00:00:00'
-          comment: '贡献期开始'
-        - deadline: '2024-10-31T23:59:00'
-          comment: '贡献期结束'
-      timezone: America/Vancouver
-      date: 2024年10月1-31日
-      place: 线上

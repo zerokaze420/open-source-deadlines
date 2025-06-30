@@ -93,7 +93,7 @@ export function EventCard({ item, event }: EventCardProps) {
                   {
                     'conference': 'bg-green-600 text-white',
                     'competition': 'bg-red-600 text-white',
-                    'activity': 'bg-orange-600 text-white'
+                    'activity': 'bg-purple-600 text-white'
                   }[item.category] || 'bg-primary text-white'
                 }`}>
                   {categoryTranslations[item.category] || item.category}

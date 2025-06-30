@@ -1,7 +1,5 @@
 # Open Source Deadlines
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme&repository-url=https%3A%2F%2Fgithub.com%2Fhust-open-atom-club%2Fopen-source-deadlines)
-
 一个追踪开源会议和竞赛截止日期的网站，帮助开发者们及时了解最新的开源活动动态，不再错过为社区贡献、学习和交流的机会。
 
 ## 如何添加活动
