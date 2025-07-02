@@ -1,4 +1,4 @@
-- title: 2025第一期 Docker 训练营
+- title: OpenCamp 第一期 Docker 训练营
   description: OpenCamp社区 × 腾讯云CNB平台合作举办。全程线上，免费教学
   category: activity
   tags:
@@ -17,3 +17,24 @@
       timezone: Asia/Shanghai
       date: 2025年6月29日-8月10日（共6周）
       place: 线上
+
+
+- title: openvela 首场城市沙龙
+  description: openvela 开源后首场城市沙龙北京站重磅来袭，小米核心技术团队将分享 openvela 开源 IoT 操作系统的技术内幕！
+  category: activity
+  tags:
+    - openvela
+    - 北京
+    - 城市沙龙
+  events:
+    - year: 2025
+      id: openvelabeijing2025
+      link: https://mp.weixin.qq.com/s/kPpiIbnHpW-nus3FUrt4tw
+      timeline:
+        - deadline: '2025-07-05T14:00:00'
+          comment: '活动开始'
+        - deadline: '2025-07-05T18:00:00'
+          comment: '活动结束'
+      timezone: Asia/Shanghai
+      date: 2025年7月5日
+      place: 中国，北京
