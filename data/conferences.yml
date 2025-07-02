@@ -1,4 +1,26 @@
-- title: CCF中国开源大会
+- title: RISC-V 中国峰会
+  description: RISC-V 中国峰会是由 RISC-V 基金会主办的年度盛会，旨在促进 RISC-V 生态系统的发展和交流。
+  category: conference
+  tags:
+    - RISC-V
+    - 开源硬件
+    - 生态系统
+  events:
+    - year: 2025
+      id: risc-v-china-summit-2025
+      link: https://riscv.org/event/risc-v-summit-china/
+      timeline:
+        - deadline: '2025-06-19T00:00:00'
+          comment: '报名开始'
+        - deadline: '2025-07-16T09:00:00'
+          comment: '会议开始'
+        - deadline: '2025-07-19T09:00:00'
+          comment: '会议结束'
+      timezone: Asia/Shanghai
+      date: 2025年7月16日-7月19日
+      place: 中国，上海
+
+- title: CCF 中国开源大会
   description: 中国计算机学会开源大会
   category: conference
   tags:
