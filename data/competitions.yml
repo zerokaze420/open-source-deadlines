@@ -15,7 +15,7 @@
         - deadline: '2025-09-30T24:00:00'
           comment: '结项提交'
       timezone: Asia/Shanghai
-      date: 2025年4月30日-9月30日
+      date: 2025 年 4 月 30 日 -9 月 30 日
       place: 线上
     - year: 2024
       id: ospp2024
@@ -26,7 +26,7 @@
         - deadline: '2024-09-30T24:00:00'
           comment: '结项提交'
       timezone: Asia/Shanghai
-      date: 2024年4月30日-9月30日
+      date: 2024 年 4 月 30 日 -9 月 30 日
       place: 线上
 
 - title: 谷歌编程之夏
@@ -64,5 +64,26 @@
         - deadline: '2025-11-17T18:00:00Z'
           comment: '导师针对延长截止日期的贡献者项目提交评估截止'
       timezone: UTC
-      date: 2025年1月27日-11月17日
+      date: 2025 年 1 月 27 日 -11 月 17 日
       place: 线上
+
+- title: 全国大学生计算机系统能力大赛-CPU 设计赛 (龙芯杯)
+  description: 面向高校大学生举办的全国性大赛，旨在选拔我国计算机系统的设计、分析、优化与应用人才。
+  category: competition
+  tags:
+    - CPU设计
+    - 龙芯
+    - 计算机系统
+    - 体系结构
+  events:
+    - year: 2025
+      id: nscscc-cpu-2025
+      link: https://www.nscscc.com
+      timeline:
+        - deadline: '2025-06-20T23:59:59'
+          comment: '报名截止'
+        - deadline: '2025-08-05T00:00:00'
+          comment: '初赛作品线上提交截止'
+      timezone: Asia/Shanghai
+      date: 2025 年 3 月 20 日 - 8 月下旬
+      place: 线上初赛 + 线下决赛     
