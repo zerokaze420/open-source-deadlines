@@ -32,37 +32,24 @@
       date: 2024年11月9日-11月10日
       place: 中国，深圳
 
-- title: OpenStack 峰会
-  description: OpenStack 峰会汇集了数千名开发者、用户和管理员
+- title: 中国 Linux 内核开发者大会
+  description: 由清华大学、Intel 等多家企业和机构发起，是中国 Linux 内核领域有影响力的峰会。
   category: conference
   tags:
-    - Cloud
-    - OpenStack
-    - Infrastructure
+    - Linux 内核
+    - 开源技术
+    - 开发者峰会
   events:
-    - year: 2025
-      id: openstack2025
-      link: https://www.openstack.org/summit/
-      timeline:
-        - deadline: '2025-03-15T23:59:00'
-          comment: '论文征集截止'
-        - deadline: '2025-05-01T09:00:00'
-          comment: '早鸟注册'
-        - deadline: '2025-06-10T09:00:00'
-          comment: '会议开始'
-      timezone: America/Vancouver
-      date: 2025年6月10-12日
-      place: 加拿大, 温哥华
     - year: 2024
-      id: openstack2024
-      link: https://www.openstack.org/summit/2024/
+      id: clk2024
+      link: http://ckernel.org/
       timeline:
-        - deadline: '2024-03-15T23:59:00'
-          comment: '论文征集截止'
-        - deadline: '2024-05-01T09:00:00'
-          comment: '早鸟注册'
-        - deadline: '2024-06-18T09:00:00'
-          comment: '会议开始'
-      timezone: America/Vancouver
-      date: 2024年6月18-20日
-      place: 加拿大, 温哥华
+        - deadline: '2024-09-10T00:00:00'
+          comment: '征稿开放'
+        - deadline: '2024-09-25T24:00:00'
+          comment: '征稿截止'
+        - deadline: '2024-10-20T24:00:00'
+          comment: '演讲PPT截止提交'
+      timezone: Asia/Shanghai
+      date: 2024年10月26日
+      place: 湖北武汉

@@ -54,7 +54,7 @@ export function EventCard({ item, event }: EventCardProps) {
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start gap-2 flex-wrap">
-                    <Link href={event.link} target="_blank" className="hover:underline flex items-center gap-1">
+                    <Link href={event.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
                       <h2 className="text-xl font-semibold leading-tight break-words">
                         {item.title}
                       </h2>
@@ -93,7 +93,7 @@ export function EventCard({ item, event }: EventCardProps) {
                   {
                     'conference': 'bg-green-600 text-white',
                     'competition': 'bg-red-600 text-white',
-                    'activity': 'bg-orange-600 text-white'
+                    'activity': 'bg-purple-600 text-white'
                   }[item.category] || 'bg-primary text-white'
                 }`}>
                   {categoryTranslations[item.category] || item.category}
