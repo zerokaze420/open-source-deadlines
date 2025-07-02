@@ -66,3 +66,29 @@
       timezone: UTC
       date: 2025年1月27日-11月17日
       place: 线上
+
+- title: 腾讯犀牛鸟
+  description: “犀牛鸟开源人才培养计划”是一项由腾讯发布的，面向高校学生及广大开发者的开源课程和开源实践培养方案，旨在培育开源人才、普及开源文化。
+  category: competition
+  tags:
+    - 腾讯
+    - Mentorship
+    - 开源技术
+  events:
+    - year: 2025
+      id: trotp2025
+      link: https://opensource.tencent.com/summer-of-code
+      timeline:
+        - deadline: '2025-06-20T00:00:00'
+          comment: '报名开始&开源基础课程开启'
+        - deadline: '2025-07-10T00:00:00'
+          comment: '开源issue实践开启'
+        - deadline: '2025-07-28T00:00:00'
+          comment: '报名结束'
+        - deadline: '2025-08-01T00:00:00'
+          comment: '开源课题实战开启'
+        - deadline: '2025-09-10T00:00:00'
+          comment: '实战毕业'
+      timezone: Asia/Shanghai
+      date: 2025年6月20日-9月10日
+      place: 线上
