@@ -59,6 +59,19 @@ export function EventCard({ item, event }: EventCardProps) {
   const displayTimezoneUTC = formatTimezoneToUTC(displayTimezone);
   const eventTimezoneUTC = formatTimezoneToUTC(event.timezone);
 
+  // 类别标签组件
+  const CategoryBadge = () => (
+    <div className={`inline-flex px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap ${
+      {
+        'conference': 'bg-green-600 text-white',
+        'competition': 'bg-red-600 text-white',
+        'activity': 'bg-purple-600 text-white'
+      }[item.category] || 'bg-primary text-white'
+    }`}>
+      {categoryTranslations[item.category] || item.category}
+    </div>
+  );
+
   return (
     <Card className={`transition-all duration-300 hover:shadow-lg ${ended ? 'opacity-60 grayscale' : ''}`}>
       <CardContent>
@@ -70,32 +83,38 @@ export function EventCard({ item, event }: EventCardProps) {
               {/* 第一行：标题和年份 */}
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-start gap-2 flex-wrap">
-                    <Link href={event.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
-                      <h2 className="text-xl font-semibold leading-tight break-words">
-                        {item.title}
-                      </h2>
-                      <ExternalLink className="w-4 h-4" />
-                    </Link>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <Badge variant="outline" className="text-xs">
-                        {event.year}
-                      </Badge>
-                      {ended && (
-                        <Badge variant="secondary" className="text-xs">
-                          已结束
+                  {/* 类别标签与标题 */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                    <div className="mb-1 sm:mb-0 sm:mr-2 flex">
+                      <CategoryBadge />
+                    </div>
+                    <div className="flex items-start gap-2 flex-wrap">
+                      <Link href={event.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
+                        <h2 className="text-xl font-semibold leading-tight break-words underline">
+                          {item.title}
+                        </h2>
+                        <ExternalLink className="w-4 h-4" />
+                      </Link>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <Badge variant="outline" className="text-xs">
+                          {event.year}
                         </Badge>
-                      )}
-                      {mounted && (
-                        <Star
-                          className={`w-4 h-4 cursor-pointer transition-colors ${
-                            isFavorited
-                              ? 'text-yellow-400 fill-yellow-400'
-                              : 'text-gray-400 hover:text-yellow-500'
-                          }`}
-                          onClick={() => toggleFavorite(cardId)}
-                        />
-                      )}
+                        {ended && (
+                          <Badge variant="secondary" className="text-xs">
+                            已结束
+                          </Badge>
+                        )}
+                        {mounted && (
+                          <Star
+                            className={`w-4 h-4 cursor-pointer transition-colors ${
+                              isFavorited
+                                ? 'text-yellow-400 fill-yellow-400'
+                                : 'text-gray-400 hover:text-yellow-500'
+                            }`}
+                            onClick={() => toggleFavorite(cardId)}
+                          />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>            
@@ -104,18 +123,6 @@ export function EventCard({ item, event }: EventCardProps) {
               <p className="text-sm leading-relaxed text-muted-foreground">
                 {item.description}
               </p>
-              {/* 类别标签 */}
-              <div className="flex justify-between items-center">
-                <div className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${
-                  {
-                    'conference': 'bg-green-600 text-white',
-                    'competition': 'bg-red-600 text-white',
-                    'activity': 'bg-purple-600 text-white'
-                  }[item.category] || 'bg-primary text-white'
-                }`}>
-                  {categoryTranslations[item.category] || item.category}
-                </div>
-              </div>
             </div>
             
             {/* 标签 */}
