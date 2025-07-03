@@ -73,5 +73,26 @@
         - deadline: '2024-10-20T24:00:00'
           comment: '演讲PPT截止提交'
       timezone: Asia/Shanghai
-      date: 2024 年 10 月 26 日
+      date: 2024年10月26日
       place: 中国，武汉
+
+- title: Community Over Code
+  description: Apache 软件基金会的官方全球系列大会，前身为 ApacheCon，旨在展示 Apache 项目的最新发展和新兴创新，促进开源社区协作与技术交流。
+  category: conference
+  tags:
+    - Apache
+    - 开源技术
+  events:
+    - year: 2025
+      id: coc-asia-2025
+      link: http://asia.communityovercode.org/
+      timeline:
+        - deadline: '2025-04-21T23:59:00+08:00'
+          comment: '议题征集截止'
+        - deadline: '2025-07-25T00:00:00+08:00'
+          comment: '会议开始'
+        - deadline: '2025-07-27T23:59:00+08:00'
+          comment: '会议结束'
+      timezone: Asia/Shanghai
+      date: 2025年7月25日-7月27日
+      place: 中国，北京
