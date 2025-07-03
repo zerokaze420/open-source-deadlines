@@ -15,7 +15,7 @@
         - deadline: '2025-09-30T24:00:00'
           comment: '结项提交'
       timezone: Asia/Shanghai
-      date: 2025 年 4 月 30 日 -9 月 30 日
+      date: 2025 年 4 月 30 日 - 9 月 30 日
       place: 线上
     - year: 2024
       id: ospp2024
@@ -26,7 +26,7 @@
         - deadline: '2024-09-30T24:00:00'
           comment: '结项提交'
       timezone: Asia/Shanghai
-      date: 2024 年 4 月 30 日 -9 月 30 日
+      date: 2024 年 4 月 30 日 - 9 月 30 日
       place: 线上
 
 - title: 谷歌编程之夏
@@ -64,10 +64,10 @@
         - deadline: '2025-11-17T18:00:00Z'
           comment: '导师针对延长截止日期的贡献者项目提交评估截止'
       timezone: UTC
-      date: 2025 年 1 月 27 日 -11 月 17 日
+      date: 2025 年 1 月 27 日 - 11 月 17 日
       place: 线上
 
-- title: 全国大学生计算机系统能力大赛-CPU 设计赛 (龙芯杯)
+- title: 全国大学生计算机系统能力大赛 - CPU 设计赛 (龙芯杯)
   description: 面向高校大学生举办的全国性大赛，旨在选拔我国计算机系统的设计、分析、优化与应用人才。
   category: competition
   tags:
@@ -86,4 +86,30 @@
           comment: '初赛作品线上提交截止'
       timezone: Asia/Shanghai
       date: 2025 年 3 月 20 日 - 8 月下旬
-      place: 线上初赛 + 线下决赛     
+      place: 线上初赛 + 线下决赛
+
+- title: 腾讯犀牛鸟
+  description: “犀牛鸟开源人才培养计划”是一项由腾讯发布的，面向高校学生及广大开发者的开源课程和开源实践培养方案，旨在培育开源人才、普及开源文化。
+  category: competition
+  tags:
+    - 腾讯
+    - Mentorship
+    - 开源技术
+  events:
+    - year: 2025
+      id: trotp2025
+      link: https://opensource.tencent.com/summer-of-code
+      timeline:
+        - deadline: '2025-06-20T00:00:00'
+          comment: '报名开始&开源基础课程开启'
+        - deadline: '2025-07-10T00:00:00'
+          comment: '开源 issue 实践开启'
+        - deadline: '2025-07-28T00:00:00'
+          comment: '报名结束'
+        - deadline: '2025-08-01T00:00:00'
+          comment: '开源课题实战开启'
+        - deadline: '2025-09-10T00:00:00'
+          comment: '实战毕业'
+      timezone: Asia/Shanghai
+      date: 2025 年 6 月 20 日 - 9 月 10 日
+      place: 线上
