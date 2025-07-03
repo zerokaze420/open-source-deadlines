@@ -9,12 +9,14 @@
       id: gitlink-summer-camp-2025
       link: https://www.gitlink.org.cn/glcc
       timeline:
-        - deadline: '2025-06-10T00:00:00'
+        - deadline: '2025-06-10T23:59:59'
           comment: '项目报名截至'
-        - deadline: '2025-07-05T00:00:00'
+        - deadline: '2025-07-05T23:59:59'
           comment: '学生报名截止'
-        - deadline: '2025-09-26T09:00:00'
-          comment: '结项考核截至'
+        - deadline: '2025-08-03T00:00:00'
+          comment: '中期考核结果公示'
+        - deadline: '2025-09-26T00:00:00'
+          comment: '结项考核结果公示'
       timezone: Asia/Shanghai
       date: 2025 年 4 月 15 日 - 9 月 26 日
       place: 中国，北京
