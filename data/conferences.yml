@@ -148,3 +148,23 @@
       timezone: Asia/Shanghai
       date: 2025年7月23日-7月24日
       place: 中国，上海
+
+- title: VueConf
+  description: VueConf是Vue.js官方社区组织的年度技术大会，分享Vue.js最新进展和最佳实践。
+  category: conference
+  tags:
+    - Vue.js
+  events:
+    - year: 2025
+      id: vueconf-2025
+      link: https://vueconf.cn/
+      timeline:
+        - deadline: '2025-07-05T22:22:00'
+          comment: '报名截止'
+        - deadline: '2025-07-12T08:00:00'
+          comment: '签到开始'
+        - deadline: '2025-07-12T19:00:00'
+          comment: '会议结束'
+      timezone: Asia/Shanghai
+      date: 2025年7月12日
+      place: 中国，深圳
