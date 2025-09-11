@@ -458,3 +458,22 @@
       timezone: Asia/Shanghai # 所在时区
       date: 2025 年 09 月 13 日 14:00 - 17:00 # 人类可读的日期范围
       place: 中国，深圳
+
+- title: CCF 开源高校行-黑龙江科技大学
+  description: CCF 开源高校行-黑龙江科技大学「开源大咖和你一起，感悟开源」。“开源高校行”是 CCF (中国计算机学会)开源发展技术委员会教育组开展的活动，旨在高校加强开源文化宣传和开源人才培养，活动包含开源课堂、开源项目、开源论坛等多种类型。
+  category: activity
+  tags:
+    - 开源
+    - CCF
+  events:
+    - year: 2025 # 年份
+      id: ccf-open-source-college-HLJUST-2025 # 全局唯一的ID
+      link: https://mp.weixin.qq.com/s/ZMeLsm3EuxEPKYt-LSwMcw # 链接
+      timeline:
+        - deadline: '2025-09-20T14:30:00' # 关键日期 (ISO 8601 格式)
+          comment: '活动开始' # 日期说明
+        - deadline: '2025-09-20T17:00:00'
+          comment: '活动结束'
+      timezone: Asia/Shanghai # 所在时区
+      date: 2025 年 09 月 20 日 14:30 - 17:00 # 人类可读的日期范围
+      place: 中国，哈尔滨
