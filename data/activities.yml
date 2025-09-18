@@ -497,6 +497,46 @@
       date: 2025 年 09 月 27 日 13:00 - 17:00 # 人类可读的日期范围
       place: 中国，成都
 
+- title: openEuler & openGauss Meetup 西安站
+  description: OpenAtom openEuler（简称：“openEuler”或“开源欧拉”）、openGauss 社区、西北工业大学联合举办的 openEuler & openGauss Meetup 将在西安举行，诚邀数据库开发者、操作系统爱好者及企业技术专家共同参与！  
+  category: activity
+  tags:
+    - openGauss
+    - openEuler
+    - 数据库
+    - 操作系统
+  events:
+    - year: 2025 # 年份
+      id: openGauss-openEuler-Meetup-2025-Xian # 全局唯一的ID
+      link: https://mp.weixin.qq.com/s/4-N0QoyecGq-B4rVD3sS7Q # 链接
+      timeline:
+        - deadline: '2025-09-26T13:30:00' # 关键日期 (ISO 8601 格式)
+          comment: '活动开始' # 日期说明
+        - deadline: '2025-09-26T17:30:00'
+          comment: '活动结束'
+      timezone: Asia/Shanghai # 所在时区
+      date: 2025 年 09 月 26 日 # 人类可读的日期范围
+      place: 中国，西安
+
+- title: openEuler 云原生开源中间件 Meetup 武汉站
+  description: openEuler 云原生开源中间件 Meetup 武汉站将在武汉职业技术大学关山校区召开，专家将分享基于轻舟 API 的高效开发以及有关 TongRDS 中间件有关的 openEuler 开源中间件技术。
+  category: activity
+  tags:
+    - openEuler
+    - 中间件
+  events:
+    - year: 2025 # 年份
+      id: openEuler-middleware-Meetup-2025-Wuhan # 全局唯一的ID
+      link: https://mp.weixin.qq.com/s/f_w1lNaYU3H2nu_q6R-B0A # 链接
+      timeline:
+        - deadline: '2025-09-25T13:45:00' # 关键日期 (ISO 8601 格式)
+          comment: '活动开始' # 日期说明
+        - deadline: '2025-09-25T17:00:00'
+          comment: '活动结束'
+      timezone: Asia/Shanghai # 所在时区
+      date: 2025 年 09 月 25 日 # 人类可读的日期范围
+      place: 中国，武汉
+
 - title: openvela 城市沙龙（上海站）
   description: 由 openvela 开源社区主办的 openvela 城市沙龙·上海站即将开启，聚焦物联网操作系统前沿技术演进与产业级典型落地案例。本次沙龙邀请了 AIoT 产业链技术专家、资深开源开发者及行业领军企业代表，共同探讨 AIoT 开源操作系统的未来发展方向，旨在推动 AIoT 技术落地与场景拓展，加速 AIoT 产业生态的繁荣生长。
   category: activity
