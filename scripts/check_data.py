@@ -144,6 +144,23 @@ def main():
 
     all_event_ids = set()
     all_tags = set()
+    
+    # 加载同义词
+    synonyms = {}
+    try:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        synonyms_path = os.path.join(script_dir, 'synonyms.yml')
+        with open(synonyms_path, 'r', encoding='utf-8') as f:
+            synonyms_data = yaml.safe_load(f)
+            for key, values in synonyms_data.items():
+                for value in values:
+                    synonyms[value] = key
+    except FileNotFoundError:
+        print("Warning: synonyms.yml not found. Skipping synonym check.")
+    except yaml.YAMLError as e:
+        print(f"Error parsing YAML file synonyms.yml: {e}")
+        sys.exit(EXIT_CODE_ERROR)
+
 
     for file_path in data_files:
         print(f"Checking {os.path.relpath(file_path)}...")
@@ -182,14 +199,17 @@ def main():
                 else:
                     print(f"Warning: Non-string tag '{tag}' found in {file_path}. Skipping.")
 
-    # Check for similar tags (case-insensitive)
+    # Check for similar tags (case-insensitive and synonyms)
     lower_to_original = {}
     for tag in all_tags:
-        lower_tag = tag.lower()
-        if lower_tag in lower_to_original and lower_to_original[lower_tag] != tag:
-            print(f"Warning: Possible case-insensitive duplicate tags found: '{lower_to_original[lower_tag]}' and '{tag}'")
+        # 规范化同义词
+        canonical_tag = synonyms.get(tag, tag)
+        lower_tag = canonical_tag.lower()
+        
+        if lower_tag in lower_to_original and lower_to_original[lower_tag] != canonical_tag:
+            print(f"Warning: Possible duplicate tags found: '{lower_to_original[lower_tag]}' and '{tag}' (synonym: '{canonical_tag}')")
         else:
-            lower_to_original[lower_tag] = tag
+            lower_to_original[lower_tag] = canonical_tag
 
     print("\n✅ All data files passed validation.")
 
