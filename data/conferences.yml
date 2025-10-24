@@ -392,3 +392,9 @@
       timezone: Asia/Shanghai # 所在时区
       date: 2025 年 11 月 15 日 # 人类可读的日期范围
       place: 中国，北京
+- title: 某次会议
+  description: 缺少 events 字段
+  category: conference
+  tags:
+    - 会议
+# 缺少 events: 列表，触发 Error
