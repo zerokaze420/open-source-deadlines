@@ -392,3 +392,27 @@
       timezone: Asia/Shanghai # 所在时区
       date: 2025 年 11 月 15 日 # 人类可读的日期范围
       place: 中国，北京
+
+- title: 开源之夏
+  description: 促进开源软件开发和贡献的暑期活动。不超过一百字。
+  category: competition
+  tags:
+    - 开源
+    - 竞赛
+    - 学生
+  events:
+    - year: 2025
+      id: ospp2025_v1
+      link: https://summer-ospp.ac.cn/
+      timeline:
+        # 规范 2: deadline 必须是 YYYY-MM-DDTHH:mm:ss 格式 (ISO 8601)
+        - deadline: '2025-06-04T18:00:00'
+          comment: '项目申请书提交'
+        - deadline: '2025-09-30T10:00:00'
+          comment: '结项提交'
+      # 规范 3: 标准 IANA 时区名称
+      timezone: Asia/Shanghai
+      # 规范 4: 人类可读的中文日期格式
+      date: 2025 年 4 月 30 日 - 9 月 30 日
+      # 规范 5: place 字段不为空
+      place: 线上
