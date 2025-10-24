@@ -392,3 +392,18 @@
       timezone: Asia/Shanghai # 所在时区
       date: 2025 年 11 月 15 日 # 人类可读的日期范围
       place: 中国，北京
+- title: 无效分类测试
+  description: category 字段不符合规范
+  category: talk # <-- 错误：不是 competition/conference/activity
+  tags:
+    - 测试
+  events:
+    - year: 2025
+      id: invalid_cat_test
+      link: https://test.com
+      timeline:
+        - deadline: '2025-05-01T00:00:00'
+          comment: '测试'
+      timezone: Asia/Shanghai
+      date: 2025 年 5 月 1 日
+      place: 线上
