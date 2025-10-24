@@ -7,7 +7,7 @@ on:
       - 'data/**.yml'
   push:
     branches:
-      - main # Or your default branch
+      -* # Or your default branch
 
 jobs:
   lint-data:
