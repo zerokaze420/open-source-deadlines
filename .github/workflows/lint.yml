@@ -62,7 +62,6 @@ jobs:
         with:
           script: |
             const fs = require('fs').promises;
-            const core = require('@actions/core');
 
             let messages = [];
 
