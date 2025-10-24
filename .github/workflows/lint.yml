@@ -29,14 +29,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install uv
           uv pip install --system PyYAML python-dateutil pytz
-          # 将脚本复制到工作区，如果它不在根目录
-          # cp scripts/check_data.py . 
 
       - name: Run data validation script and capture warnings
         id: validation
         run: |
           # 运行脚本，并将 stderr 和 stdout 都捕获到 output.log
-          python check_data.py 2>&1 | tee output.log
+          python scripts/check_data.py 2>&1 | tee output.log
           
           # 过滤出所有包含 'Warning:' 的行，并保存到 warnings.txt
           grep "Warning:" output.log > warnings.txt
