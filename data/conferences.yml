@@ -392,3 +392,24 @@
       timezone: Asia/Shanghai # 所在时区
       date: 2025 年 11 月 15 日 # 人类可读的日期范围
       place: 中国，北京
+
+
+- title: 时序错误测试
+  description: timeline 的截止日期没有按时间先后顺序排列。
+  category: competition
+  tags:
+    - 测试
+  events:
+    - year: 2025
+      id: sort_error_test
+      link: https://test.com/sort
+      timeline:
+        # 第一次截止日期 (2025-09-30)
+        - deadline: '2025-09-30T10:00:00' 
+          comment: '项目申请截止'
+        # 第二次截止日期 (2025-06-04) 晚于第一次，时序错误！
+        - deadline: '2025-06-04T18:00:00' 
+          comment: '第二次提交通知'
+      timezone: Asia/Shanghai
+      date: 2025 年 4 月 30 日 - 9 月 30 日
+      place: 线上
