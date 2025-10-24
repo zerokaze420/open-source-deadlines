@@ -1,9 +1,10 @@
 name: Lint Data Files
+
 on:
   pull_request:
     paths:
       - 'data/**.yml'
-      - 'data/**.yaml' # 确保包含 .yaml 扩展名
+      - 'data/**.yaml'
   push:
     branches:
       - '*'
@@ -12,61 +13,89 @@ on:
 jobs:
   lint-data:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        # 获取完整的历史记录，这对后续评论可能有用
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12' # 推荐使用稳定版本，如 3.12
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install uv
-          uv pip install --system PyYAML python-dateutil pytz
+          pip install PyYAML python-dateutil pytz
 
-      - name: Run data validation script and capture warnings
+      - name: Run data validation script and capture output
         id: validation
         run: |
-          # 运行脚本，并将 stderr 和 stdout 都捕获到 output.log
-          python scripts/check_data.py 2>&1 | tee output.log
-          
-          # 过滤出所有包含 'Warning:' 的行，并保存到 warnings.txt
-          grep "Warning:" output.log > warnings.txt
-          
-          # 检查 warnings.txt 是否包含内容
-          if [ -s warnings.txt ]; then
-            echo "::notice file=warnings.txt::Validation completed with warnings. Check warnings.txt."
-            echo "has_warnings=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_warnings=false" >> $GITHUB_OUTPUT
-          fi
-        # 即使脚本本身成功 (退出码 0)，我们也要捕获它的输出
-        continue-on-error: false
+          # 运行脚本，合并 stdout/stderr 到 output.log
+          python scripts/check_data.py > output.log 2>&1
 
-      # -----------------------------------------------------
-      # 新增步骤：如果发现警告，则在 PR 上评论
-      - name: Comment on PR with Warnings
-        if: github.event_name == 'pull_request' && steps.validation.outputs.has_warnings == 'true'
+          # 提取警告和错误
+          grep "^Warning:" output.log > warnings.txt || true
+          grep "^Error:" output.log > errors.txt || true
+
+          # 设置输出变量
+          echo "has_warnings=$( [ -s warnings.txt ] && echo true || echo false )" >> $GITHUB_OUTPUT
+          echo "has_errors=$( [ -s errors.txt ] && echo true || echo false )" >> $GITHUB_OUTPUT
+
+          # 调试：打印摘要（可选）
+          echo "Warnings: $(wc -l < warnings.txt || echo 0)"
+          echo "Errors: $(wc -l < errors.txt || echo 0)"
+        continue-on-error: true  # 允许脚本失败，以便我们处理输出
+
+      - name: Print validation results to log
+        if: always()
+        run: |
+          echo "=== VALIDATION OUTPUT ==="
+          cat output.log
+          echo "=========================="
+
+      - name: Comment on PR with validation results
+        if: github.event_name == 'pull_request' && (steps.validation.outputs.has_warnings == 'true' || steps.validation.outputs.has_errors == 'true')
         uses: actions/github-script@v6
         with:
           script: |
-            const fs = require('fs');
-            const warnings = fs.readFileSync('warnings.txt', 'utf8');
-            const prNumber = context.payload.pull_request.number;
-            
-            // 构造评论内容
-            const commentBody = `⚠️ **Data Validation Warnings**\n\nThe data validation script found the following warnings in your YAML files. Although they did not cause the check to fail, they should be addressed to maintain data quality:\n\n\`\`\`\n${warnings}\n\`\`\`\n\n*Please fix these issues and push a new commit to resolve this comment.*`;
+            const fs = require('fs').promises;
+            const core = require('@actions/core');
 
-            // 使用 GitHub API 创建评论
+            let messages = [];
+
+            try {
+              const warnings = await fs.readFile('warnings.txt', 'utf8');
+              if (warnings.trim()) {
+                messages.push(`⚠️ **Warnings**:\n\`\`\`\n${warnings.trim()}\n\`\`\``);
+              }
+            } catch (e) {
+              // warnings.txt may not exist or be empty
+            }
+
+            try {
+              const errors = await fs.readFile('errors.txt', 'utf8');
+              if (errors.trim()) {
+                messages.push(`❌ **Errors**:\n\`\`\`\n${errors.trim()}\n\`\`\``);
+              }
+            } catch (e) {
+              // errors.txt may not exist or be empty
+            }
+
+            if (messages.length === 0) return;
+
+            const prNumber = context.payload.pull_request.number;
+            const commentBody = `## 📋 Data Validation Report\n\n${messages.join('\n\n')}\n\n> ℹ️ This comment is automatically generated by the **Lint Data Files** workflow.`;
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
               body: commentBody
             });
+
+      - name: Fail CI if there are validation errors
+        if: steps.validation.outputs.has_errors == 'true'
+        run: exit 1
