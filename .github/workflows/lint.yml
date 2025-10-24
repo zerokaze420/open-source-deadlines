@@ -1,12 +1,12 @@
 name: Lint Data Files
-
 on:
   pull_request:
     paths:
       - 'data/**.yml'
+      - 'data/**.yaml' # 确保包含 .yaml 扩展名
   push:
     branches:
-      - '*' # Or your default branch, e.g., 'main' or 'master'
+      - '*'
   workflow_dispatch:
 
 jobs:
@@ -15,26 +15,60 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        # 获取完整的历史记录，这对后续评论可能有用
+        with:
+          fetch-depth: 0 
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          # Note: Python 3.13 may not be available on all runners yet. 
-          # You might want to use a currently stable version like '3.11' or '3.12'.
-          python-version: '3.13' 
+          python-version: '3.12' # 推荐使用稳定版本，如 3.12
 
       - name: Install dependencies
         run: |
-          # Upgrade pip first
           python -m pip install --upgrade pip
-          
-          # Install uv globally
           pip install uv
-          
-          # Install dependencies using uv with --system to avoid venv error
           uv pip install --system PyYAML python-dateutil pytz
+          # 将脚本复制到工作区，如果它不在根目录
+          # cp scripts/check_data.py . 
 
-      - name: Run data validation script
-        # Since dependencies were installed into the system path, 
-        # python can run the script directly.
-        run: python scripts/check_data.py
+      - name: Run data validation script and capture warnings
+        id: validation
+        run: |
+          # 运行脚本，并将 stderr 和 stdout 都捕获到 output.log
+          python check_data.py 2>&1 | tee output.log
+          
+          # 过滤出所有包含 'Warning:' 的行，并保存到 warnings.txt
+          grep "Warning:" output.log > warnings.txt
+          
+          # 检查 warnings.txt 是否包含内容
+          if [ -s warnings.txt ]; then
+            echo "::notice file=warnings.txt::Validation completed with warnings. Check warnings.txt."
+            echo "has_warnings=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_warnings=false" >> $GITHUB_OUTPUT
+          fi
+        # 即使脚本本身成功 (退出码 0)，我们也要捕获它的输出
+        continue-on-error: false
+
+      # -----------------------------------------------------
+      # 新增步骤：如果发现警告，则在 PR 上评论
+      - name: Comment on PR with Warnings
+        if: github.event_name == 'pull_request' && steps.validation.outputs.has_warnings == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const warnings = fs.readFileSync('warnings.txt', 'utf8');
+            const prNumber = context.payload.pull_request.number;
+            
+            // 构造评论内容
+            const commentBody = `⚠️ **Data Validation Warnings**\n\nThe data validation script found the following warnings in your YAML files. Although they did not cause the check to fail, they should be addressed to maintain data quality:\n\n\`\`\`\n${warnings}\n\`\`\`\n\n*Please fix these issues and push a new commit to resolve this comment.*`;
+
+            // 使用 GitHub API 创建评论
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: commentBody
+            });
