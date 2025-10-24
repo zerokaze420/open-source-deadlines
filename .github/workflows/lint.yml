@@ -6,7 +6,7 @@ on:
       - 'data/**.yml'
   push:
     branches:
-      - '*' # Or your default branch
+      - '*' # Or your default branch, e.g., 'main' or 'master'
   workflow_dispatch:
 
 jobs:
@@ -19,13 +19,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          # Note: Python 3.13 may not be available on all runners yet. 
+          # You might want to use a currently stable version like '3.11' or '3.12'.
+          python-version: '3.13' 
 
       - name: Install dependencies
         run: |
+          # Upgrade pip first
           python -m pip install --upgrade pip
+          
+          # Install uv globally
           pip install uv
-          uv pip install PyYAML python-dateutil pytz
+          
+          # Install dependencies using uv with --system to avoid venv error
+          uv pip install --system PyYAML python-dateutil pytz
 
       - name: Run data validation script
+        # Since dependencies were installed into the system path, 
+        # python can run the script directly.
         run: python scripts/check_data.py
