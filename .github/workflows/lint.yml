@@ -33,21 +33,24 @@ jobs:
       - name: Run data validation script and capture output
         id: validation
         run: |
-          # 运行脚本，合并 stdout/stderr 到 output.log
+          # Run script and capture all output
           python scripts/check_data.py > output.log 2>&1
+          script_exit_code=$?
 
-          # 提取警告和错误
+          # Extract warnings and errors by prefix
           grep "^Warning:" output.log > warnings.txt || true
           grep "^Error:" output.log > errors.txt || true
 
-          # 设置输出变量
+          # Set step outputs for later use
           echo "has_warnings=$( [ -s warnings.txt ] && echo true || echo false )" >> $GITHUB_OUTPUT
           echo "has_errors=$( [ -s errors.txt ] && echo true || echo false )" >> $GITHUB_OUTPUT
 
-          # 调试：打印摘要（可选）
+          # Optional: log counts
           echo "Warnings: $(wc -l < warnings.txt || echo 0)"
           echo "Errors: $(wc -l < errors.txt || echo 0)"
-        continue-on-error: true  # 允许脚本失败，以便我们处理输出
+
+          # IMPORTANT: Always exit 0 so subsequent steps can read outputs
+          exit 0
 
       - name: Print validation results to log
         if: always()
@@ -62,8 +65,6 @@ jobs:
         with:
           script: |
             const fs = require('fs').promises;
-
-
             let messages = [];
 
             try {
@@ -72,7 +73,7 @@ jobs:
                 messages.push(`⚠️ **Warnings**:\n\`\`\`\n${warnings.trim()}\n\`\`\``);
               }
             } catch (e) {
-              // warnings.txt may not exist or be empty
+              // Ignore if file missing
             }
 
             try {
@@ -81,7 +82,7 @@ jobs:
                 messages.push(`❌ **Errors**:\n\`\`\`\n${errors.trim()}\n\`\`\``);
               }
             } catch (e) {
-              // errors.txt may not exist or be empty
+              // Ignore if file missing
             }
 
             if (messages.length === 0) return;
