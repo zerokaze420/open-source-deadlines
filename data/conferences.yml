@@ -374,6 +374,8 @@
   tags:
     - openEuler
     - 开放原子
+    - AI
+    - 人工智能
   events:
     - year: 2025 # 年份
       id: openEuler-summit-2025 # 全局唯一的ID
