@@ -817,3 +817,22 @@
       timezone: Asia/Shanghai # 所在时区
       date: 2025 年 11 月 1 日 # 人类可读的日期范围
       place: 中国，成都
+
+
+- title: 多重错误示例
+  description: 包含多个不同类型的错误
+  category: wrong-category  # 错误：无效分类
+  tags:
+    - Test
+  events:
+    - year: 2025
+      id: opentenbase-chengdu-2025  # 错误：可能重复的 ID
+      link: invalid-url
+      timeline:
+        - deadline: '2025-11-01T18:00:00'  # 错误：时间顺序
+          comment: '活动结束'
+        - deadline: '2025/11/01 14:00:00'  # 错误：时间格式
+          comment: '活动开始'
+        - deadline: '2025-11-01T15:00:00'
+          comment: '茶歇'
+      timezone: Invalid/Timezone  # 错误：无效时区
